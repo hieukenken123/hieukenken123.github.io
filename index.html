@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phan Đăng Hiểu - Full-stack Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .role {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            font-size: 1.1em;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: 1.1em;
+            margin-top: 20px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: #667eea;
+        }
+
+        .objective {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid #667eea;
+        }
+
+        .skill-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-item i {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tech-table th, .tech-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tech-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .tech-table tr:hover {
+            background: #f5f7fa;
+        }
+
+        .tech-table td:first-child {
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .projects {
+            margin-top: 20px;
+        }
+
+        .project-category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-title i {
+            font-size: 0.9em;
+        }
+
+        .project-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .project-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            border-left: 2px solid #e0e0e0;
+        }
+
+        .project-list li::before {
+            content: '\f0da';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: -10px;
+            color: #667eea;
+            background: white;
+        }
+
+        .project-list li strong {
+            color: #1e3c72;
+        }
+
+        .domains {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .domain-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .domain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .domain-card i {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        .gitlab-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .gitlab-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .role {
+                font-size: 1.2em;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .section-title {
+                font-size: 1.4em;
+            }
+
+            .tech-table {
+                font-size: 0.9em;
+            }
+
+            .tech-table th, .tech-table td {
+                padding: 10px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Phan Đăng Hiểu</h1>
+                <div class="role">Full-stack Developer</div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>033 7575 254</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>luutru.phanhieu@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>TP. Hồ Chí Minh</span>
+                    </div>
+                </div>
+                <div class="tagline">"Kết nối Web – Mobile – IoT thành giải pháp hoàn chỉnh."</div>
+            </div>
+        </header>
+
+        <div class="content">
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-bullseye"></i>
+                    Mục Tiêu Nghề Nghiệp
+                </h2>
+                <div class="objective">
+                    Phát triển sự nghiệp trong lĩnh vực phần mềm tích hợp đa nền tảng (Web – Mobile – IoT). Hướng đến vị trí System Architect với khả năng phân tích, thiết kế và triển khai hệ thống hiệu năng cao, mở rộng linh hoạt.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    Năng Lực Chuyên Môn
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Phân tích, thiết kế & triển khai toàn bộ vòng đời sản phẩm phần mềm</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Xây dựng hệ thống đa nền tảng, kết nối real-time, tối ưu hiệu năng</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Hiểu sâu mô hình kiến trúc microservice, event-driven</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Quản lý dự án và phối hợp nhóm linh hoạt</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-code"></i>
+                    Công Nghệ & Công Cụ
+                </h2>
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Loại</th>
+                            <th>Công nghệ / Công cụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Backend</td>
+                            <td>NestJS, Java (Spring Boot), WebSocket, Redis, Docker, Nginx</td>
+                        </tr>
+                        <tr>
+                            <td>Database</td>
+                            <td>MongoDB, MySQL</td>
+                        </tr>
+                        <tr>
+                            <td>Frontend</td>
+                            <td>ReactJS, NextJS, WordPress</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile</td>
+                            <td>React Native</td>
+                        </tr>
+                        <tr>
+                            <td>IoT</td>
+                            <td>ESP32, ESP8266, LoRa, Arduino</td>
+                        </tr>
+                        <tr>
+                            <td>UI/UX</td>
+                            <td>Figma</td>
+                        </tr>
+                        <tr>
+                            <td>Triển khai</td>
+                            <td>Ubuntu, Nginx, Docker</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Lĩnh Vực Đã Thực Hiện
+                </h2>
+                <div class="domains">
+                    <div class="domain-card">
+                        <i class="fas fa-globe"></i>
+                        <div>Website doanh nghiệp & landing page</div>
+                    </div>
+                    <div class="domain-card">
+                        <i class="fas fa-tasks"></i>
+                        <div>Hệ thống quản trị nội bộ (webapp)</div>
+                    </div>
+                    <div class="domain-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>Ứng dụng mobile (Android/iOS)</div>
+                    </div>
+                    <div class="domain-card">
+                        <i class="fas fa-microchip"></i>
+                        <div>Giải pháp IoT (giám sát, điều khiển, cảnh báo real-time)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-project-diagram"></i>
+                    Dự Án Tiêu Biểu
+                </h2>
+                <div class="projects">
+                    <div class="project-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-leaf"></i>
+                            Nông nghiệp
+                        </h3>
+                        <ul class="project-list">
+                            <li><strong>Hệ thống quản lý đồn điền cao su</strong> – quản lý sản lượng, nhật ký công việc, báo cáo</li>
+                            <li><strong>Hệ thống cảnh báo & log cảm biến</strong> – đo nhiệt độ, độ ẩm, cảnh báo real-time</li>
+                            <li><strong>Hệ thống đo độ đục nước trại cá tầm</strong> – kết nối IoT, hiển thị dữ liệu real-time</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-concierge-bell"></i>
+                            Dịch vụ
+                        </h3>
+                        <ul class="project-list">
+                            <li><strong>Nền tảng shipping & quản lý vận đơn</strong></li>
+                            <li><strong>Sàn thương mại điện tử (TMDT)</strong></li>
+                            <li><strong>Ứng dụng order tại bàn</strong> cho nhà hàng/quán ăn</li>
+                            <li><strong>Hệ thống quản lý phòng trọ, nhà nghỉ</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="project-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Giáo dục
+                        </h3>
+                        <ul class="project-list">
+                            <li><strong>Nền tảng eLearning</strong> – học trực tuyến, quản lý khóa học, người dùng</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-robot"></i>
+                            Khác
+                        </h3>
+                        <ul class="project-list">
+                            <li><strong>Bot Telegram</strong> – dịch ngôn ngữ, giám sát hệ thống, log server</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <h3>Liên Hệ & Thông Tin Thêm</h3>
+            <a href="https://gitlab.com/luutru.phanhieu" target="_blank" class="gitlab-link">
+                <i class="fab fa-gitlab"></i>
+                <span>gitlab.com/luutru.phanhieu</span>
+            </a>
+            <p style="margin-top: 20px;">Sẵn sàng hợp tác theo dự án hoặc full-time.</p>
+        </footer>
+    </div>
+</body>
+</html>
